@@ -1,11 +1,20 @@
 [package]
 name = "us-state-info-rs"
-version = "0.1.1"
-authors = ["Calvin Brown <cab025@protonmail.com>"]
+version = "0.2.0"
+authors = ["Calvin Brown <cab025@protonmail.com>", "Isaac Duarte <isaac.duarte@live.com>"]
 edition = "2018"
 repository = "https://github.com/calvinbrown085/us-state-info-rs"
-description = "A Rust implementation of the 2 letter state abbreviations for the USA"
+description = "A Rust implementation of the state names & abbreviations for the USA"
 license = "Apache-2.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+serde = { version = "1.0", optional = true, features = ["derive"] }
+
+[features]
+serde1 = ["serde"]
+serde_abbreviation = ["serde"]
+
+[dev-dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0" }

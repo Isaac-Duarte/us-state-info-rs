@@ -20,3 +20,7 @@ jobs:
       run: cargo build --verbose
     - name: Run tests
       run: cargo test --verbose
+    - name: Run tests with serde_abbreviation feature
+      run: cargo test --verbose --features serde_abbreviation
+    - name: Run tests with serde1 feature
+      run: cargo test --verbose --features serde1
