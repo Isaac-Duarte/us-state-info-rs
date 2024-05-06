@@ -1,4 +1,4 @@
-# us-state-info-rs
+# us-state-info
 United States Individual State Information
 [![Docs](https://docs.rs/us-state-info-rs/badge.svg)]
 [![Apache-2 licensed](https://img.shields.io/crates/l/us-state-info-rs.svg)](./LICENSE)
