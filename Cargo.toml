@@ -1,10 +1,10 @@
 [package]
-name = "us-state-info-rs"
+name = "us-state-info"
 version = "0.2.0"
 authors = ["Calvin Brown <cab025@protonmail.com>", "Isaac Duarte <isaac.duarte@live.com>"]
 edition = "2018"
 repository = "https://github.com/calvinbrown085/us-state-info-rs"
-description = "A Rust implementation of the state names & abbreviations for the USA"
+description = "A Fork of a Rust implementation of the state names & abbreviations for the USA"
 license = "Apache-2.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
