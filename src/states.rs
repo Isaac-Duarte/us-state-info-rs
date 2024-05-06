@@ -8,7 +8,7 @@ use std::fmt::Display;
 /// format!("{}-{}", iowa_state, iowa_state.abbreviation());
 ///
 /// ```
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone, Copy)]
 
 pub enum State {
     Alabama,
