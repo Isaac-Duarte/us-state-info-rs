@@ -19,6 +19,7 @@ pub enum State {
     Colorado,
     Connecticut,
     Delaware,
+    DistrictOfColumbia,
     Florida,
     Georgia,
     Hawaii,
@@ -61,6 +62,7 @@ pub enum State {
     WestVirginia,
     Wisconsin,
     Wyoming,
+    PuertoRico
 }
 
 impl State {
@@ -75,6 +77,7 @@ impl State {
             State::Colorado => "CO",
             State::Connecticut => "CT",
             State::Delaware => "DE",
+            State::DistrictOfColumbia => "DC",
             State::Florida => "FL",
             State::Georgia => "GA",
             State::Hawaii => "HI",
@@ -117,6 +120,8 @@ impl State {
             State::WestVirginia => "WV",
             State::Wisconsin => "WI",
             State::Wyoming => "WY",
+            State::PuertoRico => "PR",
+            
         }
     }
 }
@@ -135,6 +140,7 @@ impl Display for State {
                 State::Colorado => "Colorado",
                 State::Connecticut => "Connecticut",
                 State::Delaware => "Delaware",
+                State::DistrictOfColumbia => "District of Columbia",
                 State::Florida => "Florida",
                 State::Georgia => "Georgia",
                 State::Hawaii => "Hawaii",
@@ -177,6 +183,7 @@ impl Display for State {
                 State::WestVirginia => "West Virginia",
                 State::Wisconsin => "Wisconsin",
                 State::Wyoming => "Wyoming",
+                State::PuertoRico => "Puerto Rico",
             }
         )
     }
@@ -218,6 +225,7 @@ impl<'de> serde::Deserialize<'de> for State {
             "CO" | "Colorado" => Ok(State::Colorado),
             "CT" | "Connecticut" => Ok(State::Connecticut),
             "DE" | "Delaware" => Ok(State::Delaware),
+            "DC" | "District of Columbia" => Ok(State::DistrictOfColumbia),
             "FL" | "Florida" => Ok(State::Florida),
             "GA" | "Georgia" => Ok(State::Georgia),
             "HI" | "Hawaii" => Ok(State::Hawaii),
@@ -260,13 +268,14 @@ impl<'de> serde::Deserialize<'de> for State {
             "WV" | "West Virginia" => Ok(State::WestVirginia),
             "WI" | "Wisconsin" => Ok(State::Wisconsin),
             "WY" | "Wyoming" => Ok(State::Wyoming),
+            "PR" | "Puerto Rico" => Ok(State::PuertoRico),
             _ => Err(serde::de::Error::unknown_variant(
                 &s,
                 &[
-                    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL",
-                    "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT",
-                    "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI",
-                    "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+                    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID",
+                    "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO",
+                    "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA",
+                    "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
                 ],
             )),
         }
