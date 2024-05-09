@@ -1,6 +1,6 @@
 [package]
 name = "us-state-info"
-version = "0.2.3"
+version = "0.2.4"
 authors = ["Calvin Brown <cab025@protonmail.com>", "Isaac Duarte <isaac.duarte@live.com>"]
 edition = "2018"
 repository = "https://github.com/Isaac-Duarte/us-state-info-rs"

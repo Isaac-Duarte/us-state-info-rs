@@ -1,5 +1,16 @@
 pub mod states;
+use std::fmt::Display;
+
 pub use states::State;
+
+#[derive(Debug, Clone)]
+pub struct ConversionError;
+
+impl Display for ConversionError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Provided value was not an abbreviation or state name of the USA")
+    }
+}
 
 #[cfg(test)]
 mod tests {

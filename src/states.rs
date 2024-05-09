@@ -1,9 +1,11 @@
-use std::fmt::Display;
+use std::{convert::{TryFrom, TryInto}, fmt::Display};
+
+use crate::ConversionError;
 
 /// Enumeration of all states in the US.
 ///
 /// ```
-/// use us_state_info_rs::State;
+/// use us_state_info::State;
 /// let iowa_state = State::Iowa;
 /// format!("{}-{}", iowa_state, iowa_state.abbreviation());
 ///
@@ -62,7 +64,7 @@ pub enum State {
     WestVirginia,
     Wisconsin,
     Wyoming,
-    PuertoRico
+    PuertoRico,
 }
 
 impl State {
@@ -121,7 +123,68 @@ impl State {
             State::Wisconsin => "WI",
             State::Wyoming => "WY",
             State::PuertoRico => "PR",
-            
+        }
+    }
+}
+
+impl TryFrom<String> for State {
+    type Error = ConversionError;
+
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        match value.to_lowercase().replace(" ", "").as_str() {
+            "al" | "alabama" => Ok(State::Alabama),
+            "ak" | "alaska" => Ok(State::Alaska),
+            "az" | "arizona" => Ok(State::Arizona),
+            "ar" | "arkansas" => Ok(State::Arkansas),
+            "ca" | "california" => Ok(State::California),
+            "co" | "colorado" => Ok(State::Colorado),
+            "ct" | "connecticut" => Ok(State::Connecticut),
+            "de" | "delaware" => Ok(State::Delaware),
+            "dc" | "districtofcolumbia" => Ok(State::DistrictOfColumbia),
+            "fl" | "florida" => Ok(State::Florida),
+            "ga" | "georgia" => Ok(State::Georgia),
+            "hi" | "hawaii" => Ok(State::Hawaii),
+            "id" | "idaho" => Ok(State::Idaho),
+            "il" | "illinois" => Ok(State::Illinois),
+            "in" | "indiana" => Ok(State::Indiana),
+            "ia" | "iowa" => Ok(State::Iowa),
+            "ks" | "kansas" => Ok(State::Kansas),
+            "ky" | "kentucky" => Ok(State::Kentucky),
+            "la" | "louisiana" => Ok(State::Louisiana),
+            "me" | "maine" => Ok(State::Maine),
+            "md" | "maryland" => Ok(State::Maryland),
+            "ma" | "massachusetts" => Ok(State::Massachusetts),
+            "mi" | "michigan" => Ok(State::Michigan),
+            "mn" | "minnesota" => Ok(State::Minnesota),
+            "ms" | "mississippi" => Ok(State::Mississippi),
+            "mo" | "missouri" => Ok(State::Missouri),
+            "mt" | "montana" => Ok(State::Montana),
+            "ne" | "nebraska" => Ok(State::Nebraska),
+            "nv" | "nevada" => Ok(State::Nevada),
+            "nh" | "newhampshire" => Ok(State::NewHampshire),
+            "nj" | "newjersey" => Ok(State::NewJersey),
+            "nm" | "newmexico" => Ok(State::NewMexico),
+            "ny" | "newyork" => Ok(State::NewYork),
+            "nc" | "northcarolina" => Ok(State::NorthCarolina),
+            "nd" | "northdakota" => Ok(State::NorthDakota),
+            "oh" | "ohio" => Ok(State::Ohio),
+            "ok" | "oklahoma" => Ok(State::Oklahoma),
+            "or" | "oregon" => Ok(State::Oregon),
+            "pa" | "pennsylvania" => Ok(State::Pennsylvania),
+            "ri" | "rhodeisland" => Ok(State::RhodeIsland),
+            "sc" | "southcarolina" => Ok(State::SouthCarolina),
+            "sd" | "southdakota" => Ok(State::SouthDakota),
+            "tn" | "tennessee" => Ok(State::Tennessee),
+            "tx" | "texas" => Ok(State::Texas),
+            "ut" | "utah" => Ok(State::Utah),
+            "vt" | "vermont" => Ok(State::Vermont),
+            "va" | "virginia" => Ok(State::Virginia),
+            "wa" | "washington" => Ok(State::Washington),
+            "wv" | "westvirginia" => Ok(State::WestVirginia),
+            "wi" | "wisconsin" => Ok(State::Wisconsin),
+            "wy" | "wyoming" => Ok(State::Wyoming),
+            "pr" | "puertorico" => Ok(State::PuertoRico),
+            _ => Err(ConversionError),
         }
     }
 }
@@ -216,60 +279,10 @@ impl<'de> serde::Deserialize<'de> for State {
         D: serde::Deserializer<'de>,
     {
         let s = String::deserialize(deserializer)?;
-        match s.as_str() {
-            "AL" | "Alabama" => Ok(State::Alabama),
-            "AK" | "Alaska" => Ok(State::Alaska),
-            "AZ" | "Arizona" => Ok(State::Arizona),
-            "AR" | "Arkansas" => Ok(State::Arkansas),
-            "CA" | "California" => Ok(State::California),
-            "CO" | "Colorado" => Ok(State::Colorado),
-            "CT" | "Connecticut" => Ok(State::Connecticut),
-            "DE" | "Delaware" => Ok(State::Delaware),
-            "DC" | "District of Columbia" => Ok(State::DistrictOfColumbia),
-            "FL" | "Florida" => Ok(State::Florida),
-            "GA" | "Georgia" => Ok(State::Georgia),
-            "HI" | "Hawaii" => Ok(State::Hawaii),
-            "ID" | "Idaho" => Ok(State::Idaho),
-            "IL" | "Illinois" => Ok(State::Illinois),
-            "IN" | "Indiana" => Ok(State::Indiana),
-            "IA" | "Iowa" => Ok(State::Iowa),
-            "KS" | "Kansas" => Ok(State::Kansas),
-            "KY" | "Kentucky" => Ok(State::Kentucky),
-            "LA" | "Louisiana" => Ok(State::Louisiana),
-            "ME" | "Maine" => Ok(State::Maine),
-            "MD" | "Maryland" => Ok(State::Maryland),
-            "MA" | "Massachusetts" => Ok(State::Massachusetts),
-            "MI" | "Michigan" => Ok(State::Michigan),
-            "MN" | "Minnesota" => Ok(State::Minnesota),
-            "MS" | "Mississippi" => Ok(State::Mississippi),
-            "MO" | "Missouri" => Ok(State::Missouri),
-            "MT" | "Montana" => Ok(State::Montana),
-            "NE" | "Nebraska" => Ok(State::Nebraska),
-            "NV" | "Nevada" => Ok(State::Nevada),
-            "NH" | "New Hampshire" => Ok(State::NewHampshire),
-            "NJ" | "New Jersey" => Ok(State::NewJersey),
-            "NM" | "New Mexico" => Ok(State::NewMexico),
-            "NY" | "New York" => Ok(State::NewYork),
-            "NC" | "North Carolina" => Ok(State::NorthCarolina),
-            "ND" | "North Dakota" => Ok(State::NorthDakota),
-            "OH" | "Ohio" => Ok(State::Ohio),
-            "OK" | "Oklahoma" => Ok(State::Oklahoma),
-            "OR" | "Oregon" => Ok(State::Oregon),
-            "PA" | "Pennsylvania" => Ok(State::Pennsylvania),
-            "RI" | "Rhode Island" => Ok(State::RhodeIsland),
-            "SC" | "South Carolina" => Ok(State::SouthCarolina),
-            "SD" | "South Dakota" => Ok(State::SouthDakota),
-            "TN" | "Tennessee" => Ok(State::Tennessee),
-            "TX" | "Texas" => Ok(State::Texas),
-            "UT" | "Utah" => Ok(State::Utah),
-            "VT" | "Vermont" => Ok(State::Vermont),
-            "VA" | "Virginia" => Ok(State::Virginia),
-            "WA" | "Washington" => Ok(State::Washington),
-            "WV" | "West Virginia" => Ok(State::WestVirginia),
-            "WI" | "Wisconsin" => Ok(State::Wisconsin),
-            "WY" | "Wyoming" => Ok(State::Wyoming),
-            "PR" | "Puerto Rico" => Ok(State::PuertoRico),
-            _ => Err(serde::de::Error::unknown_variant(
+
+        match s.clone().try_into() {
+            Ok(state) => Ok(state),
+            Err(_) => Err(serde::de::Error::unknown_variant(
                 &s,
                 &[
                     "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID",
