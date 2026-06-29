@@ -26,3 +26,5 @@ jobs:
       run: cargo test --verbose --features serde1
     - name: Run tests with specta feature
       run: cargo test --verbose --features specta
+    - name: Run tests with schemars feature
+      run: cargo test --verbose --features schemars

@@ -1,6 +1,6 @@
 [package]
 name = "us-state-info"
-version = "0.2.6"
+version = "0.2.7"
 authors = ["Calvin Brown <cab025@protonmail.com>", "Isaac Duarte <isaac.duarte@live.com>"]
 edition = "2018"
 repository = "https://github.com/Isaac-Duarte/us-state-info-rs"
@@ -11,11 +11,13 @@ license = "Apache-2.0"
 [dependencies]
 serde = { version = "1.0", optional = true, features = ["derive"] }
 specta = { version = "=2.0.0-rc.22", optional = true, features = ["derive"] }
+schemars = { version = "1.0", optional = true, features = ["derive"] }
 
 [features]
 serde1 = ["serde"]
 serde_abbreviation = ["serde"]
 specta = ["dep:specta"]
+schemars = ["dep:schemars"]
 
 [dev-dependencies]
 serde = { version = "1.0", features = ["derive"] }

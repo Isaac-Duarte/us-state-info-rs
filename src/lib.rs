@@ -66,4 +66,14 @@ mod tests {
         assert!(exported.contains("California"));
         assert!(exported.contains("PuertoRico"));
     }
+
+    #[test]
+    #[cfg(feature = "schemars")]
+    fn test_schemars_schema() {
+        let schema = schemars::schema_for!(State);
+        let json = serde_json::to_string(&schema).unwrap();
+        assert!(json.contains("Alabama"));
+        assert!(json.contains("California"));
+        assert!(json.contains("PuertoRico"));
+    }
 }

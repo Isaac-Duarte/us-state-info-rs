@@ -12,6 +12,7 @@ use crate::ConversionError;
 /// ```
 #[derive(Debug, PartialEq, Clone, Copy)]
 #[cfg_attr(feature = "specta", derive(specta::Type))]
+#[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 pub enum State {
     Alabama,
     Alaska,
