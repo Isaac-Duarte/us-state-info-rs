@@ -61,9 +61,7 @@ mod tests {
     #[test]
     #[cfg(feature = "specta")]
     fn test_specta_export() {
-        use specta::ts;
-
-        let exported = ts::export::<State>(&Default::default()).unwrap();
+        let exported = specta_typescript::export::<State>(&Default::default()).unwrap();
         assert!(exported.contains("Alabama"));
         assert!(exported.contains("California"));
         assert!(exported.contains("PuertoRico"));
